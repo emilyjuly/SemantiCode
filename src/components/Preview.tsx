@@ -32,7 +32,7 @@ const Preview: React.FC<PreviewProps> = ({ htmlCode, cssCode }) => {
         <iframe
           srcDoc={previewContent}
           title="Preview"
-          className="w-full h-96 border rounded"
+          className="w-full h-120 border rounded"
         />
       </CardContent>
     </Card>

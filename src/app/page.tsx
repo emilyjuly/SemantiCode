@@ -1,36 +1,41 @@
-'use client'
+'use client';
 
-import CodeEditorHtml from "@/components/CodeEditorHtml";
-import CodeEditorCss from "@/components/CodeEditorCss";
-import Preview from "@/components/Preview";
-import { useState } from "react";
-import { Button } from "@/components/ui/button"
+import CodeEditorHtml from '@/components/CodeEditorHtml';
+import CodeEditorCss from '@/components/CodeEditorCss';
+import ChatBot from '@/components/ChatBot';
+import Preview from '@/components/Preview';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import LoadingAnimation from '@/components/LoadingAnimation';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 const EditorPage = () => {
-  const [htmlCode, setHtmlCode] = useState<string>("");
-  const [cssCode, setCssCode] = useState<string>("");
+  const [htmlCode, setHtmlCode] = useState<string>('');
+  const [cssCode, setCssCode] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<any>(null);
 
   async function handleAnalyze(html: string, css: string): Promise<void> {
+    setResults(null);
     setLoading(true);
-    await fetch("/api/saveCode", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    await fetch('/api/saveCode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ html, css }),
     });
 
-    const response = await fetch("/api/analyze", { method: "GET" });
+    const response = await fetch('/api/analyze', { method: 'GET' });
     const data = await response.json();
-    console.log(JSON.parse(data.results));
-    setResults(JSON.parse(data.results))
+    if (data) {
+      setResults(JSON.parse(data.results));
+    }
     setLoading(false);
   }
 
   const getScoreColor = (score: number) => {
-    if (score >= 90) return "green";  // Bom
-    if (score >= 50) return "yellow"; // Médio
-    return "red";                     // Ruim
+    if (score >= 90) return 'green';
+    if (score >= 50) return 'yellow';
+    return 'red';
   };
 
   return (
@@ -53,39 +58,59 @@ const EditorPage = () => {
           >
             Start analysis
           </Button>
+          {loading && <LoadingAnimation />}
           {results && results.categories && (
-            <div>
-              <h2>Audit Results</h2>
-              <ul>
-                {Object.keys(results.categories).map((key) => (
-                  <li key={key}>
-                    <strong>{results.categories[key].title}:</strong>{' '}
-                    {results.categories[key].score}
-                  </li>
+            <div className="mt-5">
+              <div className="flex space-x-8 mt-3">
+                {['accessibility', 'seo'].map((category) => (
+                  <div key={category} className="flex flex-col items-center">
+                    <ResponsiveContainer width={150} height={150}>
+                      <PieChart>
+                        <Pie
+                          data={[
+                            {
+                              name: 'Score',
+                              value: results.categories[category].score * 100,
+                            },
+                            {
+                              name: 'Remaining',
+                              value:
+                                100 - results.categories[category].score * 100,
+                            },
+                          ]}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={40}
+                          outerRadius={60}
+                          fill={getScoreColor(
+                            results.categories[category].score * 100,
+                          )}
+                          dataKey="value"
+                        >
+                          <Cell
+                            fill={getScoreColor(
+                              results.categories[category].score * 100,
+                            )}
+                          />
+                          <Cell fill="#E0E0E0" />
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
+                    <p className="text-center font-semibold mt-2">
+                      {category.charAt(0).toUpperCase() + category.slice(1)}:{' '}
+                      {results.categories[category].score * 100}%
+                    </p>
+                  </div>
                 ))}
-              </ul>
-              <p
-                style={{
-                  color: getScoreColor(
-                    results.categories.accessibility.score * 100,
-                  ),
-                }}
-              >
-                Acessibilidade: {results.categories.accessibility.score * 100}
-              </p>
-              <p
-                style={{
-                  color: getScoreColor(results.categories.seo.score * 100),
-                }}
-              >
-                SEO: {results.categories.seo.score * 100}
-              </p>
+              </div>
             </div>
           )}
+          <ChatBot />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default EditorPage;

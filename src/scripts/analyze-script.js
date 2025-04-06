@@ -15,7 +15,7 @@ async function analyze() {
     setTimeout(() => {
 
       exec(
-        `lighthouse http://localhost:8080/temp.html --output=json --quiet`,
+        `lighthouse http://localhost:8080/temp.html --output=json --quiet --chrome-flags="--headless --no-sandbox"`,
         (err, stdout, stderr) => {
           if (err || stderr) {
             console.error('Error running Lighthouse:', err || stderr);
