@@ -11,6 +11,7 @@
   "dependencies": {
     "@codemirror/lang-html": "^6.4.9",
     "@codemirror/theme-one-dark": "^6.1.2",
+    "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "@uiw/codemirror-theme-dracula": "^4.23.10",
     "@uiw/react-codemirror": "^4.23.10",

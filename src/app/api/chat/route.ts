@@ -19,7 +19,6 @@ export async function POST(req: Request) {
     );
 
     const data = await response.json();
-    console.log(data.choices[0].message.content)
 
     if (data.error) {
       console.error(data.error)

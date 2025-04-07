@@ -5,9 +5,18 @@ import CodeEditorCss from '@/components/CodeEditorCss';
 import ChatBot from '@/components/ChatBot';
 import Preview from '@/components/Preview';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import LoadingAnimation from '@/components/LoadingAnimation';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import Footer from '@/components/Footer';
 
 const EditorPage = () => {
   const [htmlCode, setHtmlCode] = useState<string>('');
@@ -40,11 +49,48 @@ const EditorPage = () => {
 
   return (
     <div className="container mx-auto p-4 h-screen">
-      <h1 className="text-4xl font-bold mb-6">
-        <span className="text-primary">Semanti</span>
-        <span className="text-secondary">Code</span>
-        <span className="blinking-cursor">|</span>
-      </h1>
+      <div className="flex items-center justify-between w-full">
+        <h1 className="text-4xl font-bold mb-6">
+          <span className="text-primary">Semanti</span>
+          <span className="text-secondary">Code</span>
+          <span className="blinking-cursor">|</span>
+        </h1>
+        <Dialog>
+          <DialogTrigger className="underline cursor-pointer">
+            How It Works
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>How It Works</DialogTitle>
+              <DialogDescription className="space-y-2">
+                This site helps developers practice semantic HTML and get
+                real-time feedback on their code.
+                <ul className="list-disc pl-5">
+                  <li>
+                    <strong>Code Editor & Preview:</strong> Write HTML & CSS in
+                    the editor and see the live preview.
+                  </li>
+                  <li>
+                    <strong>Semantic Analysis:</strong> Enter HTML code to
+                    unlock the <em>"Start Analysis"</em> button. Lighthouse will
+                    evaluate your SEO & accessibility score.
+                  </li>
+                  <li>
+                    <strong>Quick Start:</strong> Use the{' '}
+                    <em>"Generate Template"</em> button for a basic HTML file
+                    structure.
+                  </li>
+                  <li>
+                    <strong>AI Chatbot:</strong> A floating bot in the
+                    bottom-right corner helps answer coding questions.
+                  </li>
+                </ul>
+                Start coding and improve your semantic HTML skills! 🚀
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </div>
       <div className="flex h-[90%]">
         <div className="flex flex-col w-1/2 h-full space-y-4 pr-4">
           <CodeEditorHtml onChange={setHtmlCode} />
@@ -55,6 +101,7 @@ const EditorPage = () => {
           <Button
             className="mt-5 cursor-pointer"
             onClick={() => handleAnalyze(htmlCode, cssCode)}
+            disabled={loading || htmlCode.length === 0}
           >
             Start analysis
           </Button>
@@ -109,6 +156,7 @@ const EditorPage = () => {
           <ChatBot />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
