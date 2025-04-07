@@ -28,7 +28,7 @@ const ChatBot = () => {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const newMessages = [...messages, { text: input, sender: 'user' }];
+    const newMessages: { text: string; sender: 'user' | 'ai' }[] = [...messages, { text: input, sender: 'user' }];
     setMessages(newMessages);
     setInput('');
     setLoading(true);

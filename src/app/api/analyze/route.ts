@@ -1,8 +1,12 @@
-import { exec } from 'child_process';
+import { ExecException, exec } from 'child_process';
 import { NextResponse } from 'next/server';
 import path from 'path';
 
-export async function GET() {
+type AnalyzeResponse = 
+  | { results: string }
+  | { error: string; details: string | ExecException };
+
+export async function GET(): Promise<NextResponse<AnalyzeResponse>> {
   return new Promise((resolve) => {
     const scriptPath = path.join(
       process.cwd(),

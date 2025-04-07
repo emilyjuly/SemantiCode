@@ -5,7 +5,7 @@ import CodeEditorCss from '@/components/CodeEditorCss';
 import ChatBot from '@/components/ChatBot';
 import Preview from '@/components/Preview';
 import { useState } from 'react';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import LoadingAnimation from '@/components/LoadingAnimation';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import {
@@ -62,7 +62,7 @@ const EditorPage = () => {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>How It Works</DialogTitle>
-              <DialogDescription className="space-y-2">
+              <div className="space-y-2">
                 <p>
                   This site helps developers practice semantic HTML and get
                   real-time feedback on their code.
@@ -88,7 +88,7 @@ const EditorPage = () => {
                   </li>
                 </ul>
                 <p>Start coding and improve your semantic HTML skills! 🚀</p>
-              </DialogDescription>
+              </div>
             </DialogHeader>
           </DialogContent>
         </Dialog>
