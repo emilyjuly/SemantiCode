@@ -63,8 +63,10 @@ const EditorPage = () => {
             <DialogHeader>
               <DialogTitle>How It Works</DialogTitle>
               <DialogDescription className="space-y-2">
-                This site helps developers practice semantic HTML and get
-                real-time feedback on their code.
+                <p>
+                  This site helps developers practice semantic HTML and get
+                  real-time feedback on their code.
+                </p>
                 <ul className="list-disc pl-5">
                   <li>
                     <strong>Code Editor & Preview:</strong> Write HTML & CSS in
@@ -85,7 +87,7 @@ const EditorPage = () => {
                     bottom-right corner helps answer coding questions.
                   </li>
                 </ul>
-                Start coding and improve your semantic HTML skills! 🚀
+                <p>Start coding and improve your semantic HTML skills! 🚀</p>
               </DialogDescription>
             </DialogHeader>
           </DialogContent>

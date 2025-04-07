@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-col mt-4">
           <span className="text-gray-500">Site</span>
-          <a className="underline" href="https://www.julydev.com.br/">
+          <a className="underline" href="https://www.julydev.com.br/" target='_blank'>
             https://www.julydev.com.br/
           </a>
         </div>
