@@ -2,6 +2,8 @@ const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
+process.env.CHROME_PATH = '/usr/bin/chromium-browser';
+
 async function analyze() {
   const filePath = path.resolve('/tmp/temp.html');
   const htmlContent = fs.readFileSync(filePath, "utf8");
@@ -12,7 +14,7 @@ async function analyze() {
     setTimeout(() => {
 
       exec(
-        `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet --chrome-flags="--headless --no-sandbox"`,
+        `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet"`,
         (err, stdout, stderr) => {
           if (err || stderr) {
             console.error('Error running Lighthouse:', err || stderr);
