@@ -12,7 +12,7 @@ async function analyze() {
     setTimeout(() => {
 
       exec(
-        `npx lighthouse http://localhost:8080/temp.html --output=json --quiet --chrome-flags="--headless --no-sandbox"`,
+        `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet --chrome-flags="--headless --no-sandbox"`,
         (err, stdout, stderr) => {
           if (err || stderr) {
             console.error('Error running Lighthouse:', err || stderr);
