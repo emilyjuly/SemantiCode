@@ -1,6 +1,7 @@
 import { ExecException, exec } from 'child_process';
 import { NextResponse } from 'next/server';
 import path from 'path';
+import 'html-validator';
 
 type AnalyzeResponse =
   | { results: string }
@@ -33,7 +34,7 @@ export async function GET(): Promise<NextResponse<AnalyzeResponse>> {
       console.error('Error:', error);
       resolve(
         NextResponse.json(
-          { error: 'Unexpected error', details: String(error) }, // Corrige a estrutura
+          { error: 'Unexpected error', details: String(error) },
           { status: 500 },
         ),
       );
