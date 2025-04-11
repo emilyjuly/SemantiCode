@@ -1,0 +1,12 @@
+(()=>{var e={};e.id=442,e.ids=[442],e.modules={3295:e=>{"use strict";e.exports=require("next/dist/server/app-render/after-task-async-storage.external.js")},10846:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-page.runtime.prod.js")},29021:e=>{"use strict";e.exports=require("fs")},29294:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-async-storage.external.js")},33873:e=>{"use strict";e.exports=require("path")},44870:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-route.runtime.prod.js")},60055:(e,t,r)=>{"use strict";r.r(t),r.d(t,{patchFetch:()=>y,routeModule:()=>m,serverHooks:()=>h,workAsyncStorage:()=>x,workUnitAsyncStorage:()=>v});var s={};r.r(s),r.d(s,{POST:()=>l});var i=r(96559),o=r(48088),a=r(37719),n=r(29021),u=r.n(n),p=r(33873),d=r.n(p),c=r(32190);async function l(e){try{let{html:t,css:r}=await e.json();if(!t)return c.NextResponse.json({error:"Missing required fields"},{status:400});let s="/tmp",i=d().join(s,"temp.html");u().existsSync(s)||u().mkdirSync(s,{recursive:!0});let o=`
+        <!DOCTYPE html>
+        <html lang="pt">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Teste</title>
+          <style>${r}</style>
+        </head>
+        <body>${t}</body>
+        </html>
+    `;return u().writeFileSync(i,o,"utf8"),c.NextResponse.json({message:"File created successfully",path:i})}catch(e){return console.error("Error saving code:",e),c.NextResponse.json({error:`Error saving code: ${e}`},{status:500})}}let m=new i.AppRouteRouteModule({definition:{kind:o.RouteKind.APP_ROUTE,page:"/api/saveCode/route",pathname:"/api/saveCode",filename:"route",bundlePath:"app/api/saveCode/route"},resolvedPagePath:"/home/emily/semanticode/src/app/api/saveCode/route.ts",nextConfigOutput:"",userland:s}),{workAsyncStorage:x,workUnitAsyncStorage:v,serverHooks:h}=m;function y(){return(0,a.patchFetch)({workAsyncStorage:x,workUnitAsyncStorage:v})}},63033:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-unit-async-storage.external.js")},78335:()=>{},96487:()=>{}};var t=require("../../../webpack-runtime.js");t.C(e);var r=e=>t(t.s=e),s=t.X(0,[447,580],()=>r(60055));module.exports=s})();
