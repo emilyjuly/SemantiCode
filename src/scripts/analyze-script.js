@@ -6,33 +6,34 @@ process.env.CHROME_PATH = '/usr/bin/chromium-browser';
 
 async function analyze() {
   const filePath = path.resolve('/tmp/temp.html');
-  const htmlContent = fs.readFileSync(filePath, "utf8");
+  const htmlContent = fs.readFileSync(filePath, 'utf8');
 
-  try {    
-    const serverProcess = exec("node server.js");
+  try {
+    const serverProcess = exec('node server.js');
+    console.log('Servidor iniciado...');
 
-    setTimeout(() => {
+    // Espera o servidor iniciar antes de rodar o Lighthouse
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
-      exec(
-        `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet`,
-        (err, stdout, stderr) => {
-          if (err || stderr) {
-            console.error('Error running Lighthouse:', err || stderr);
-            return;
-          }
+    const lighthouseCommand = `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet`;
 
-          try {
-            const lighthouseResults = JSON.parse(stdout);
-            console.log(stdout)
-          } catch (parseErr) {
-            console.error('Error parsing Lighthouse output:', parseErr);
-          }
-        },
-      );
-      serverProcess.kill();
-    }, 5000);
+    exec(lighthouseCommand, (err, stdout, stderr) => {
+      if (err || stderr) {
+        console.error('Erro ao rodar Lighthouse:', err || stderr);
+        return;
+      }
+
+      try {
+        const lighthouseResults = JSON.parse(stdout);
+        console.log('Resultados do Lighthouse:', lighthouseResults);
+      } catch (parseErr) {
+        console.error('Erro ao processar saída do Lighthouse:', parseErr);
+      }
+    });
+
+    serverProcess.kill(); // Mata o servidor depois da análise
   } catch (error) {
-    console.error('Error validating HTML:', error);
+    console.error('Erro ao validar HTML:', error);
   }
 }
 
