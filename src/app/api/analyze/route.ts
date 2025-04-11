@@ -21,7 +21,7 @@ export async function GET(): Promise<NextResponse<AnalyzeResponse>> {
           console.error('Error running script:', err || stderr);
           resolve(
             NextResponse.json(
-              { error: 'Error running script', details: err || stderr },
+              { error: `Error running script: ${err}`, details: err || stderr },
               { status: 500 },
             ),
           );
