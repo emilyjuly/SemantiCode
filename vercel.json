@@ -1,8 +1,7 @@
 {
-    "functions": {
-      "api/*": {
-        "includeFiles": ["node_modules/html-validator/**"]
-      }
+  "functions": {
+    "api/*": {
+      "includeFiles": ["node_modules/html-validator/**/*"]
     }
   }
-  
+}
