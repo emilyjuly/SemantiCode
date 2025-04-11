@@ -4,7 +4,7 @@ import CodeEditorHtml from '@/components/CodeEditorHtml';
 import CodeEditorCss from '@/components/CodeEditorCss';
 import ChatBot from '@/components/ChatBot';
 import Preview from '@/components/Preview';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import LoadingAnimation from '@/components/LoadingAnimation';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
@@ -23,23 +23,43 @@ const EditorPage = () => {
   const [cssCode, setCssCode] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [results, setResults] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleAnalyze(html: string, css: string): Promise<void> {
     setResults(null);
     setLoading(true);
-    await fetch('/api/saveCode', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ html, css }),
-    });
+    setError(null);
 
-    const response = await fetch('/api/analyze', { method: 'GET' });
-    const data = await response.json();
-    if (data) {
-      setResults(JSON.parse(data.results));
+    try {
+      const saveResponse = await fetch('/api/saveCode', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ html, css }),
+      });
+
+      const saveData = await saveResponse.json();
+      if (!saveResponse.ok)
+        throw new Error(saveData.error || 'Error saving code.');
+
+      const analyzeResponse = await fetch('/api/analyze', { method: 'GET' });
+      const analyzeData = await analyzeResponse.json();
+      if (!analyzeResponse.ok)
+        throw new Error(analyzeData.error || 'Error parsing code.');
+
+      setResults(JSON.parse(analyzeData.results));
+    } catch (error: any) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const getScoreColor = (score: number) => {
     if (score >= 90) return 'green';
@@ -48,7 +68,7 @@ const EditorPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 h-screen">
+    <div className="lg:flex-row min-h-screen container mx-auto p-4 h-screen">
       <div className="flex items-center justify-between w-full">
         <h1 className="text-4xl font-bold mb-6">
           <span className="text-primary">Semanti</span>
@@ -93,12 +113,12 @@ const EditorPage = () => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="flex h-[90%]">
-        <div className="flex flex-col w-1/2 h-full space-y-4 pr-4">
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        <div className="flex flex-col lg:w-1/2 w-full space-y-4 lg:pr-4">
           <CodeEditorHtml onChange={setHtmlCode} />
           <CodeEditorCss onChange={setCssCode} />
         </div>
-        <div className="flex-1 h-full">
+        <div className="flex-1 h-full lg:w-1/2 w-full space-y-4 lg:pr-4">
           <Preview htmlCode={htmlCode} cssCode={cssCode} />
           <Button
             className="mt-5 cursor-pointer"
@@ -158,6 +178,14 @@ const EditorPage = () => {
           <ChatBot />
         </div>
       </div>
+      {error && (
+        <div
+          className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-center z-50 animate-slide-up"
+          role="alert"
+        >
+          <strong className="font-bold">Erro:</strong> {error}
+        </div>
+      )}
       <Footer />
     </div>
   );

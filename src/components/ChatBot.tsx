@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -19,6 +19,14 @@ const ChatBot = () => {
   >([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const toggleChat = () => {
     setMessages([]);
@@ -28,10 +36,14 @@ const ChatBot = () => {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const newMessages: { text: string; sender: 'user' | 'ai' }[] = [...messages, { text: input, sender: 'user' }];
+    const newMessages: { text: string; sender: 'user' | 'ai' }[] = [
+      ...messages,
+      { text: input, sender: 'user' },
+    ];
     setMessages(newMessages);
     setInput('');
     setLoading(true);
+    setError(null);
 
     try {
       const response = await fetch('/api/chat', {
@@ -41,9 +53,12 @@ const ChatBot = () => {
       });
 
       const data = await response.json();
+      if (!response.ok)
+        throw new Error(data.error || 'Error connecting to AI.');
+
       setMessages([...newMessages, { text: data.response, sender: 'ai' }]);
-    } catch (error) {
-      console.error('Erro ao chamar API:', error);
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
@@ -71,7 +86,7 @@ const ChatBot = () => {
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      code({ inline, className, children }) {
+                      code({ inline, className, children }: any) {
                         if (inline) {
                           return (
                             <code className="inline-code">{children}</code>
@@ -116,6 +131,14 @@ const ChatBot = () => {
               Send
             </button>
           </div>
+        </div>
+      )}
+      {error && (
+        <div
+          className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-center z-50 animate-slide-up"
+          role="alert"
+        >
+          <strong className="font-bold">Erro:</strong> {error}
         </div>
       )}
     </>

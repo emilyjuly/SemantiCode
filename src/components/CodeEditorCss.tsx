@@ -17,7 +17,7 @@ interface CodeEditorProps {
 
 const CodeEditorCss: React.FC<CodeEditorProps> = ({ onChange }) => {
   const handleCssChange = useCallback(
-    (val) => {
+    (val: any) => {
       onChange(val);
     }, [onChange]);
 

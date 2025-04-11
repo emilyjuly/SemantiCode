@@ -57,6 +57,7 @@ const CodeEditorHtml: React.FC<CodeEditorProps> = ({ onChange }) => {
             size="sm"
             title="Gerar HTML Semântico"
             style={{ cursor: 'pointer' }}
+            className="w-50 text-[10px] lg:w-80 lg:text-[16px]"
           >
             Generate a basic HTML template 🪄
           </Button>

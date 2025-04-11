@@ -2,7 +2,7 @@ import { Code } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="flex justify-between bottom-0 w-full p-4 border-t text-sm mt-10">
+    <footer className="flex justify-between bottom-0 w-full p-4 border-t text-sm">
       <div className="flex flex-col">
         <Code className="w-10 h-10 text-pink-500" />
         <p className="font-bold">

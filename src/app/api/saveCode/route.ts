@@ -3,18 +3,18 @@ import path from 'path';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
-  const { html, css } = await req.json();
+  try {
+    const { html, css } = await req.json();
 
-  if (!html) {
-    return NextResponse.json(
-      { error: 'Missing required fields' },
-      { status: 400 },
-    );
-  }
+    if (!html) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 },
+      );
+    }
+    const filePath = path.join(process.cwd(), 'public', 'temp.html');
 
-  const filePath = path.join(process.cwd(), 'public', 'temp.html');
-
-  const fullHtml = `
+    const fullHtml = `
         <!DOCTYPE html>
         <html lang="pt">
         <head>
@@ -27,10 +27,14 @@ export async function POST(req: Request) {
         </html>
     `;
 
-  fs.writeFileSync(filePath, fullHtml);
+    fs.writeFileSync(filePath, fullHtml);
 
-  return NextResponse.json({
-    message: 'File created successfully',
-    path: filePath,
-  });
+    return NextResponse.json({
+      message: 'File created successfully',
+      path: filePath,
+    });
+  } catch (error) {
+    console.error('Error saving code:', error);
+    return NextResponse.json({ error: 'Error saving code' }, { status: 500 });
+  }
 }
