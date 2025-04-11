@@ -1,18 +1,22 @@
+const chromium = require('chrome-aws-lambda');
 const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-process.env.CHROME_PATH = '/usr/bin/chromium-browser';
-
 async function analyze() {
+  process.env.CHROME_PATH = '/usr/bin/chromium-browser';
+
   const filePath = path.resolve('/tmp/temp.html');
-  const htmlContent = fs.readFileSync(filePath, 'utf8');
+
+  if (!fs.existsSync(filePath)) {
+    console.error("Arquivo temp.html não encontrado!");
+    return;
+  }
 
   try {
     const serverProcess = exec('node server.js');
     console.log('Servidor iniciado...');
 
-    // Espera o servidor iniciar antes de rodar o Lighthouse
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     const lighthouseCommand = `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet`;
@@ -31,7 +35,7 @@ async function analyze() {
       }
     });
 
-    serverProcess.kill(); // Mata o servidor depois da análise
+    serverProcess.kill();
   } catch (error) {
     console.error('Erro ao validar HTML:', error);
   }

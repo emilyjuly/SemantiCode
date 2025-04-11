@@ -1,12 +1,11 @@
-FROM mcr.microsoft.com/playwright:v1.42.0-focal
+FROM node:18
+
+RUN apt-get update && apt-get install -y chromium
 
 WORKDIR /app
-
-COPY package.json package-lock.json ./
-RUN npm install
-
 COPY . .
 
-EXPOSE 8080
+RUN npm install
+RUN npm run build
 
 CMD ["npm", "start"]
