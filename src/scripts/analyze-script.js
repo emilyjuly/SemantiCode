@@ -1,15 +1,12 @@
 const { exec } = require('child_process');
 const path = require('path');
-const validator = require('html-validator');
 const fs = require('fs');
 
 async function analyze() {
   const filePath = path.join(__dirname, '../../public/temp.html');
   const htmlContent = fs.readFileSync(filePath, "utf8");
 
-  try {
-    const validationResults = await validator({ data: htmlContent, format: "json" });
-    
+  try {    
     const serverProcess = exec("node server.js");
 
     setTimeout(() => {
