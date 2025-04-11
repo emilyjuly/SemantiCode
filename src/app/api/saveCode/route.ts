@@ -12,7 +12,7 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
-    const filePath = path.join(process.cwd(), 'tmp', 'temp.html');
+    const filePath = path.join(process.cwd(), '/tmp', 'temp.html');
 
     const fullHtml = `
         <!DOCTYPE html>
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         </html>
     `;
 
-    fs.writeFileSync(filePath, fullHtml);
+    fs.writeFileSync(filePath, fullHtml, 'utf8');
 
     return NextResponse.json({
       message: 'File created successfully',
