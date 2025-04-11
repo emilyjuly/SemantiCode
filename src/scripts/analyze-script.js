@@ -14,7 +14,7 @@ async function analyze() {
     setTimeout(() => {
 
       exec(
-        `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet"`,
+        `node node_modules/lighthouse/cli/index.js http://localhost:8080/temp.html --output=json --quiet`,
         (err, stdout, stderr) => {
           if (err || stderr) {
             console.error('Error running Lighthouse:', err || stderr);
