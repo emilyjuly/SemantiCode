@@ -1,8 +1,0 @@
-{
-    "functions": {
-      "api/*": {
-        "includeFiles": ["node_modules/html-validator/**"]
-      }
-    }
-  }
-  
