@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 async function analyze() {
-  const filePath = path.join(__dirname, '../../tmp/temp.html');
+  const filePath = path.resolve('/tmp/temp.html');
   const htmlContent = fs.readFileSync(filePath, "utf8");
 
   try {    
