@@ -12,7 +12,7 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
-    const filePath = path.join(process.cwd(), 'public', 'temp.html');
+    const filePath = path.join(process.cwd(), '/tmp', 'temp.html');
 
     const fullHtml = `
         <!DOCTYPE html>
