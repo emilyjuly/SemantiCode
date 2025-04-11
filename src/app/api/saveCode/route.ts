@@ -12,7 +12,12 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
-    const filePath = path.join(process.cwd(), '/tmp', 'temp.html');
+    const tempDir = '/tmp';
+    const filePath = path.join(tempDir, 'temp.html');
+
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir, { recursive: true });
+    }
 
     const fullHtml = `
         <!DOCTYPE html>
