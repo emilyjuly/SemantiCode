@@ -35,6 +35,6 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     console.error('Error saving code:', error);
-    return NextResponse.json({ error: 'Error saving code' }, { status: 500 });
+    return NextResponse.json({ error: `Error saving code: ${error}` }, { status: 500 });
   }
 }

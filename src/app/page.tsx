@@ -39,7 +39,7 @@ const EditorPage = () => {
 
       const saveData = await saveResponse.json();
       if (!saveResponse.ok)
-        throw new Error(saveData.error || 'Error saving code.');
+        throw new Error(saveData.error || `Error saving code: ${saveData.error}`);
 
       const analyzeResponse = await fetch('/api/analyze', { method: 'GET' });
       const analyzeData = await analyzeResponse.json();
