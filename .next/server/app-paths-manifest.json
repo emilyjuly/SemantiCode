@@ -1,4 +1,7 @@
 {
+  "/api/analyze/route": "app/api/analyze/route.js",
+  "/api/preview/[id]/route": "app/api/preview/[id]/route.js",
+  "/api/saveCode/route": "app/api/saveCode/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js"
 }

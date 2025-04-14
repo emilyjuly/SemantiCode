@@ -1,6 +1,5 @@
-import fs from 'fs';
-import path from 'path';
 import { NextResponse } from 'next/server';
+import { saveTempPage, deleteTempPage, getTempPage } from '@/lib/tempPages';
 
 export async function POST(req: Request) {
   try {
@@ -11,12 +10,6 @@ export async function POST(req: Request) {
         { error: 'Missing required fields' },
         { status: 400 },
       );
-    }
-    const tempDir = '/tmp';
-    const filePath = path.join(tempDir, 'temp.html');
-
-    if (!fs.existsSync(tempDir)) {
-      fs.mkdirSync(tempDir, { recursive: true });
     }
 
     const fullHtml = `
@@ -32,11 +25,14 @@ export async function POST(req: Request) {
         </html>
     `;
 
-    fs.writeFileSync(filePath, fullHtml, 'utf8');
+    const id = Math.random().toString(36).substr(2, 9);
+    saveTempPage(id, fullHtml);
+    console.log('o id no save code é esse', id)
 
+    setTimeout(() => deleteTempPage(id), 10 * 60 * 1000);
     return NextResponse.json({
       message: 'File created successfully',
-      path: filePath,
+      id,
     });
   } catch (error) {
     console.error('Error saving code:', error);

@@ -40,8 +40,7 @@ const EditorPage = () => {
       const saveData = await saveResponse.json();
       if (!saveResponse.ok)
         throw new Error(saveData.error || `Error saving code: ${saveData.error}`);
-
-      const analyzeResponse = await fetch('/api/analyze', { method: 'GET' });
+      const analyzeResponse = await fetch(`/api/analyze?id=${saveData.id}`);
       const analyzeData = await analyzeResponse.json();
       if (!analyzeResponse.ok)
         throw new Error(analyzeData.error || 'Error parsing code.');

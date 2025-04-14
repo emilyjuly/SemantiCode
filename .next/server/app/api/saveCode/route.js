@@ -1,12 +1,7 @@
-(()=>{var e={};e.id=442,e.ids=[442],e.modules={3295:e=>{"use strict";e.exports=require("next/dist/server/app-render/after-task-async-storage.external.js")},10846:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-page.runtime.prod.js")},23946:(e,t,r)=>{"use strict";r.r(t),r.d(t,{patchFetch:()=>y,routeModule:()=>m,serverHooks:()=>h,workAsyncStorage:()=>v,workUnitAsyncStorage:()=>x});var s={};r.r(s),r.d(s,{POST:()=>l});var a=r(96559),i=r(48088),o=r(37719);let n=require("fs");var u=r.n(n),p=r(33873),d=r.n(p),c=r(32190);async function l(e){try{let{html:t,css:r}=await e.json();if(!t)return c.NextResponse.json({error:"Missing required fields"},{status:400});let s="/tmp",a=d().join(s,"temp.html");u().existsSync(s)||u().mkdirSync(s,{recursive:!0});let i=`
-        <!DOCTYPE html>
-        <html lang="pt">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Teste</title>
-          <style>${r}</style>
-        </head>
-        <body>${t}</body>
-        </html>
-    `;return u().writeFileSync(a,i,"utf8"),c.NextResponse.json({message:"File created successfully",path:a})}catch(e){return console.error("Error saving code:",e),c.NextResponse.json({error:`Error saving code: ${e}`},{status:500})}}let m=new a.AppRouteRouteModule({definition:{kind:i.RouteKind.APP_ROUTE,page:"/api/saveCode/route",pathname:"/api/saveCode",filename:"route",bundlePath:"app/api/saveCode/route"},resolvedPagePath:"/home/emily/semanticode/src/app/api/saveCode/route.ts",nextConfigOutput:"",userland:s}),{workAsyncStorage:v,workUnitAsyncStorage:x,serverHooks:h}=m;function y(){return(0,o.patchFetch)({workAsyncStorage:v,workUnitAsyncStorage:x})}},29294:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-async-storage.external.js")},33873:e=>{"use strict";e.exports=require("path")},44870:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-route.runtime.prod.js")},63033:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-unit-async-storage.external.js")},78335:()=>{},96487:()=>{}};var t=require("../../../webpack-runtime.js");t.C(e);var r=e=>t(t.s=e),s=t.X(0,[447,580],()=>r(23946));module.exports=s})();
+const CHUNK_PUBLIC_PATH = "server/app/api/saveCode/route.js";
+const runtime = require("../../../chunks/[turbopack]_runtime.js");
+runtime.loadChunk("server/chunks/node_modules_next_c26167e8._.js");
+runtime.loadChunk("server/chunks/[root of the server]__71a44a56._.js");
+runtime.getOrInstantiateRuntimeModule("[project]/.next-internal/server/app/api/saveCode/route/actions.js [app-rsc] (server actions loader, ecmascript)", CHUNK_PUBLIC_PATH);
+runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/saveCode/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH);
+module.exports = runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/saveCode/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH).exports;

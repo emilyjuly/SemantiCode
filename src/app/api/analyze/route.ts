@@ -1,42 +1,53 @@
-import { ExecException, exec } from 'child_process';
-import { NextResponse } from 'next/server';
-import path from 'path';
+import { NextResponse, NextRequest } from 'next/server';
+import { getTempPage } from '@/lib/tempPages';
 
 type AnalyzeResponse =
   | { results: string }
   | { error: string; details: string | ExecException };
 
-export async function GET(): Promise<NextResponse<AnalyzeResponse>> {
-  return new Promise((resolve) => {
-    try {
-      const scriptPath = path.join(
-        process.cwd(),
-        'src',
-        'scripts',
-        'analyze-script.js',
-      );
+export async function GET(req: NextRequest): Promise<NextResponse<AnalyzeResponse>> {
+  const id = req.nextUrl.searchParams.get('id');
+  const apiKey = process.env.API_KEY;
 
-      exec(`node ${scriptPath}`, (err, stdout, stderr) => {
-        if (err || stderr) {
-          console.error('Error running script:', err || stderr);
-          resolve(
-            NextResponse.json(
-              { error: `Error running script: ${err}`, details: err || stderr },
-              { status: 500 },
-            ),
-          );
-          return;
-        }
-        resolve(NextResponse.json({ results: stdout }, { status: 200 }));
-      });
-    } catch (error) {
-      console.error('Error:', error);
-      resolve(
-        NextResponse.json(
-          { error: 'Unexpected error', details: String(error) },
-          { status: 500 },
-        ),
+  if (!id) {
+    return NextResponse.json(
+      { error: 'Missing "id" parameter', details: 'No ID provided in query.' },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const html = getTempPage(id);
+
+    if (!html) {
+      return NextResponse.json(
+        { error: 'Page not found', details: 'No HTML found for the given ID.' },
+        { status: 404 }
       );
     }
-  });
+
+    console.log('no analyze o id é esse', id)
+    const urlToAnalyze = `http://localhost:3000/api/preview/${id}`;
+
+    const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
+      urlToAnalyze,
+    )}&category=ACCESSIBILITY&category=SEO&strategy=desktop&key=${apiKey}`;
+
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+
+    if (!res.ok) {
+      return NextResponse.json(
+        { error: 'Lighthouse API error', details: JSON.stringify(data) },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ results: data }, { status: 200 });
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: 'Unexpected error', details: err.message },
+      { status: 500 }
+    );
+  }
 }
