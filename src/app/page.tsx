@@ -52,6 +52,13 @@ const EditorPage = () => {
       // const analyzeData = await analyzeResponse.json();
       // if (!analyzeResponse.ok)
       //   throw new Error(analyzeData.error || 'Error parsing code.');
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        console.error('Erro do Lighthouse:', data);
+        throw new Error(data.error?.message || 'Erro na análise do Lighthouse');
+      }
 
       setResults(data);
     } catch (error: any) {
