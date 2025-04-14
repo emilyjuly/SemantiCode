@@ -29,7 +29,6 @@ export async function POST(req: Request) {
     saveTempPage(id, fullHtml);
     console.log('o id no save code é esse', id)
 
-    setTimeout(() => deleteTempPage(id), 10 * 60 * 1000);
     return NextResponse.json({
       message: 'File created successfully',
       id,

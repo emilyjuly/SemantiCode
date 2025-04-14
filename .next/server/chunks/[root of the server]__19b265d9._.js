@@ -111,6 +111,7 @@ async function GET(req) {
         const urlToAnalyze = `http://localhost:3000/api/preview/${id}`;
         const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(urlToAnalyze)}&category=ACCESSIBILITY&category=SEO&strategy=desktop&key=${apiKey}`;
         const res = await fetch(apiUrl);
+        console.log(res);
         const data = await res.json();
         if (!res.ok) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
@@ -132,6 +133,8 @@ async function GET(req) {
         }, {
             status: 500
         });
+    } finally{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$tempPages$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["deleteTempPage"])(id);
     }
 }
 }}),

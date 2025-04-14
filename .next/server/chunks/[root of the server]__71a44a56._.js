@@ -111,7 +111,6 @@ async function POST(req) {
         const id = Math.random().toString(36).substr(2, 9);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$tempPages$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["saveTempPage"])(id, fullHtml);
         console.log('o id no save code é esse', id);
-        setTimeout(()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$tempPages$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["deleteTempPage"])(id), 10 * 60 * 1000);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             message: 'File created successfully',
             id

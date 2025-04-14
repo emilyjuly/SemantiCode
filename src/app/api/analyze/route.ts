@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { getTempPage } from '@/lib/tempPages';
+import { deleteTempPage, getTempPage } from '@/lib/tempPages';
 
 type AnalyzeResponse =
   | { results: string }
@@ -49,5 +49,7 @@ export async function GET(req: NextRequest): Promise<NextResponse<AnalyzeRespons
       { error: 'Unexpected error', details: err.message },
       { status: 500 }
     );
+  } finally {
+    deleteTempPage(id);
   }
 }
