@@ -43,7 +43,7 @@ const EditorPage = () => {
       }
 
       const urlToAnalyze = `https://semanticode.vercel.app/api/preview/${saveData.id}`;
-      const apiKey = process.env.API_KEY;
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
       const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
       urlToAnalyze,
     )}&category=ACCESSIBILITY&category=SEO&strategy=desktop&key=${apiKey}`;
