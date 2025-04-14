@@ -54,7 +54,7 @@ const EditorPage = () => {
         console.error('Erro do Lighthouse:', data);
         throw new Error(data.error?.message || 'Erro na análise do Lighthouse');
       }
-
+      console.log(data.lighthouseResult.categories)
       setResults(data.lighthouseResult.categories);
     } catch (error: any) {
       setError(error.message);
@@ -137,7 +137,8 @@ const EditorPage = () => {
             Start analysis
           </Button>
           {loading && <LoadingAnimation />}
-          {results && results.categories && (
+          {results}
+          {/* {results && results.categories && (
             <div className="mt-5">
               <div className="flex space-x-8 mt-3">
                 {['accessibility', 'seo'].map((category) => (
@@ -183,7 +184,7 @@ const EditorPage = () => {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
           <ChatBot />
         </div>
       </div>
