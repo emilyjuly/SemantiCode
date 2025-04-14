@@ -47,11 +47,6 @@ const EditorPage = () => {
       const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
       urlToAnalyze,
     )}&category=ACCESSIBILITY&category=SEO&strategy=desktop&key=${apiKey}`;
-
-      // const analyzeResponse = await fetch(`/api/analyze?id=${saveData.id}`);
-      // const analyzeData = await analyzeResponse.json();
-      // if (!analyzeResponse.ok)
-      //   throw new Error(analyzeData.error || 'Error parsing code.');
       const res = await fetch(apiUrl);
       const data = await res.json();
 
@@ -60,7 +55,7 @@ const EditorPage = () => {
         throw new Error(data.error?.message || 'Erro na análise do Lighthouse');
       }
 
-      setResults(data);
+      setResults(data.lighthouseResult.categories);
     } catch (error: any) {
       setError(error.message);
     } finally {
