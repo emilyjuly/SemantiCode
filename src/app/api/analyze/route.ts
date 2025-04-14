@@ -28,7 +28,7 @@ export async function GET(req: NextRequest): Promise<NextResponse<AnalyzeRespons
     }
 
     console.log('no analyze o id é esse', id)
-    const urlToAnalyze = `http://localhost:3000/api/preview/${id}`;
+    const urlToAnalyze = `https://semanticode.vercel.app/api/preview/${id}`;
 
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
       urlToAnalyze,
@@ -51,6 +51,6 @@ export async function GET(req: NextRequest): Promise<NextResponse<AnalyzeRespons
       { status: 500 }
     );
   } finally {
-    deleteTempPage(id);
+    // deleteTempPage(id);
   }
 }

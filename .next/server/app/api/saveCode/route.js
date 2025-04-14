@@ -1,12 +1,7 @@
-(()=>{var e={};e.id=442,e.ids=[442],e.modules={3295:e=>{"use strict";e.exports=require("next/dist/server/app-render/after-task-async-storage.external.js")},10846:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-page.runtime.prod.js")},28821:(e,t,r)=>{"use strict";r.d(t,{T2:()=>a,Tl:()=>o,u7:()=>n});let s={};function o(e,t){s[e]=t}function n(e){return s[e]||null}function a(e){delete s[e]}},29294:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-async-storage.external.js")},44870:e=>{"use strict";e.exports=require("next/dist/compiled/next-server/app-route.runtime.prod.js")},60055:(e,t,r)=>{"use strict";r.r(t),r.d(t,{patchFetch:()=>m,routeModule:()=>p,serverHooks:()=>v,workAsyncStorage:()=>c,workUnitAsyncStorage:()=>l});var s={};r.r(s),r.d(s,{POST:()=>d});var o=r(96559),n=r(48088),a=r(37719),i=r(32190),u=r(28821);async function d(e){try{let{html:t,css:r}=await e.json();if(!t)return i.NextResponse.json({error:"Missing required fields"},{status:400});let s=`
-        <!DOCTYPE html>
-        <html lang="pt">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Teste</title>
-          <style>${r}</style>
-        </head>
-        <body>${t}</body>
-        </html>
-    `,o=Math.random().toString(36).substr(2,9);return(0,u.Tl)(o,s),console.log("o id no save code \xe9 esse",o),i.NextResponse.json({message:"File created successfully",id:o})}catch(e){return console.error("Error saving code:",e),i.NextResponse.json({error:`Error saving code: ${e}`},{status:500})}}let p=new o.AppRouteRouteModule({definition:{kind:n.RouteKind.APP_ROUTE,page:"/api/saveCode/route",pathname:"/api/saveCode",filename:"route",bundlePath:"app/api/saveCode/route"},resolvedPagePath:"/home/emily/semanticode/src/app/api/saveCode/route.ts",nextConfigOutput:"",userland:s}),{workAsyncStorage:c,workUnitAsyncStorage:l,serverHooks:v}=p;function m(){return(0,a.patchFetch)({workAsyncStorage:c,workUnitAsyncStorage:l})}},63033:e=>{"use strict";e.exports=require("next/dist/server/app-render/work-unit-async-storage.external.js")},78335:()=>{},96487:()=>{}};var t=require("../../../webpack-runtime.js");t.C(e);var r=e=>t(t.s=e),s=t.X(0,[447,580],()=>r(60055));module.exports=s})();
+const CHUNK_PUBLIC_PATH = "server/app/api/saveCode/route.js";
+const runtime = require("../../../chunks/[turbopack]_runtime.js");
+runtime.loadChunk("server/chunks/node_modules_next_c26167e8._.js");
+runtime.loadChunk("server/chunks/[root of the server]__71a44a56._.js");
+runtime.getOrInstantiateRuntimeModule("[project]/.next-internal/server/app/api/saveCode/route/actions.js [app-rsc] (server actions loader, ecmascript)", CHUNK_PUBLIC_PATH);
+runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/saveCode/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH);
+module.exports = runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/src/app/api/saveCode/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH).exports;

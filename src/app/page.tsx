@@ -38,14 +38,22 @@ const EditorPage = () => {
       });
 
       const saveData = await saveResponse.json();
-      if (!saveResponse.ok)
+      if (!saveResponse.ok) {
         throw new Error(saveData.error || `Error saving code: ${saveData.error}`);
-      const analyzeResponse = await fetch(`/api/analyze?id=${saveData.id}`);
-      const analyzeData = await analyzeResponse.json();
-      if (!analyzeResponse.ok)
-        throw new Error(analyzeData.error || 'Error parsing code.');
+      }
 
-      setResults(JSON.parse(analyzeData.results));
+      const urlToAnalyze = `https://semanticode.vercel.app/api/preview/${saveData.id}`;
+      const apiKey = process.env.API_KEY;
+      const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
+      urlToAnalyze,
+    )}&category=ACCESSIBILITY&category=SEO&strategy=desktop&key=${apiKey}`;
+
+      // const analyzeResponse = await fetch(`/api/analyze?id=${saveData.id}`);
+      // const analyzeData = await analyzeResponse.json();
+      // if (!analyzeResponse.ok)
+      //   throw new Error(analyzeData.error || 'Error parsing code.');
+
+      setResults(data));
     } catch (error: any) {
       setError(error.message);
     } finally {
