@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "DISABLE_ESLINT_PLUGIN=true next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "apt-get update && apt-get install -y chromium-browser"
+    "lint": "next lint"
   },
   "dependencies": {
     "@codemirror/lang-html": "^6.4.9",
@@ -22,7 +21,6 @@
     "express": "^5.1.0",
     "framer-motion": "^12.6.3",
     "fs": "^0.0.1-security",
-    "html-validator": "^6.0.1",
     "http-server": "^14.1.1",
     "lighthouse": "^12.5.1",
     "lucide-react": "^0.486.0",
@@ -38,12 +36,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
+    "@tailwindcss/postcss": "^4.1.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "postcss": "^8.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

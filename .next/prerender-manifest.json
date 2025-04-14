@@ -1,30 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/favicon.ico": {
       "initialHeaders": {
         "cache-control": "public, max-age=0, must-revalidate",
@@ -53,13 +29,37 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
+    },
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "432c5260fcb1ef07193ea886d98e3724",
-    "previewModeSigningKey": "d6368492a0e4dc518f6085b8bb77cac2af27dfed39fd60666d7b729b7f7c79d2",
-    "previewModeEncryptionKey": "5ae09b089ce0f31045bce107aef7e0a82442454b6b2eaa62c4028a89c843fdb5"
+    "previewModeId": "9fa74a530d36e0f4188962ee713605a4",
+    "previewModeSigningKey": "91eb7820a966ded589eb04bacc80825b7fbd0f0c61f34b9f8c4aff0c9e3876a6",
+    "previewModeEncryptionKey": "f01581d6c7970824e85d7b233f15fee6abdb221c1a37da884e06175f6f3a6608"
   }
 }

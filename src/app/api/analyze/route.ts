@@ -1,7 +1,6 @@
 import { ExecException, exec } from 'child_process';
 import { NextResponse } from 'next/server';
 import path from 'path';
-import 'html-validator';
 
 type AnalyzeResponse =
   | { results: string }
