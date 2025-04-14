@@ -136,7 +136,6 @@ const EditorPage = () => {
             Start analysis
           </Button>
           {loading && <LoadingAnimation />}
-          {results}
           {results && results.categories && (
             <div className="mt-5">
               <div className="flex space-x-8 mt-3">
