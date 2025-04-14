@@ -1,39 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 SemantiCode
 
-## Getting Started
+SemantiCode é uma ferramenta interativa que ajuda desenvolvedores a **praticar HTML semântico** e **entender como a estrutura semântica afeta diretamente a acessibilidade e SEO** de uma página web.
 
-First, run the development server:
+> _“Write Better HTML, One Tag at a Time 🚀”_
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📌 Funcionalidades
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- ✍️ **Editor de Código com Live Preview**  
+  Escreva HTML e CSS em editores CodeMirror integrados e veja o resultado renderizado em tempo real.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🧱 **Gerador de Template HTML Básico**  
+  Comece mais rápido com um botão que gera automaticamente uma estrutura mínima de HTML válida.
 
-## Learn More
+- 🚦 **Análise com Lighthouse API**  
+  O projeto utiliza o Lighthouse para avaliar a página criada pelo usuário e retorna **pontuações de SEO e acessibilidade**.
 
-To learn more about Next.js, take a look at the following resources:
+- 🤖 **Chatbot com IA (GPT-4o via CablyAI)**  
+  Um assistente de IA integrado que pode:
+  - Explicar conceitos de HTML semântico
+  - Gerar exemplos de código (semântico e não semântico)
+  - Ajudar a identificar melhorias na sua página
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 📊 **Resultados Visuais**  
+  As notas de SEO e acessibilidade são exibidas em gráficos circulares para fácil interpretação.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 🧠 **Modal "How it works"**  
+  Um diálogo explicativo que detalha o objetivo e funcionamento do projeto, acessível no topo da página.
 
-## Deploy on Vercel
+- 📩 **Rodapé com Contato**  
+  Informações sobre a criadora, email e site pessoal disponíveis no rodapé da página.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🖼️ Imagem do Projeto
+
+![image](https://github.com/user-attachments/assets/85779cb4-aac3-4c29-9195-43971a15fd5f)
 
 
-(Falta ajustar responsividade e fazer tratamento de erros, a ia parou de funcionar)
+---
+
+## 🚀 Como Funciona
+
+1. Escreva HTML e CSS nos editores.
+2. Veja o resultado renderizado em tempo real.
+3. Clique em **Start analysis** para iniciar a análise com Lighthouse.
+4. O app cria uma rota dinâmica que serve o HTML digitado como uma página temporária.
+5. A API do Lighthouse analisa essa página e retorna:
+   - **SEO score**
+   - **Accessibility score**
+6. Os resultados são exibidos na interface em gráficos coloridos.
+
+---
+
+## 📦 Tecnologias Utilizadas
+
+- **Next.js** (com rotas API e dinâmica)
+- **React + CodeMirror** para os editores de código
+- **Lighthouse** (via API customizada com Node.js)
+- **CablyAI** com **GPT-4o** para o chatbot
+- **Chart.js / Recharts** (para os gráficos de score)
+
+---
+
+## 💡 Exemplo de Uso
+
+Você pode pedir ao assistente de IA:
+> "Me mostre um exemplo de uma página HTML sem uso semântico."
+
+E então analisar o resultado para ver como a falta de semântica prejudica a acessibilidade e SEO.
+
+---
+
+## 📬 Contato
+
+**Criado por:** Emily July  
+📧 Email: [emilyjulygd@gmail.com](mailto:emilyjulygd@gmail.com)  
+🌐 Site: [https://www.julydev.com.br/](https://www.julydev.com.br/)
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob a **MIT License** – fique à vontade para utilizar, contribuir ou adaptar.
+
+---
+
+## 🌟 Contribua
+
+Se você tiver ideias para melhorar a experiência de aprendizado com HTML semântico, sinta-se à vontade para abrir uma issue ou enviar um PR!
+
