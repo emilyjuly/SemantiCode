@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { deleteTempPage, getTempPage } from '@/lib/tempPages';
+import { ExecException } from 'child_process';
 
 type AnalyzeResponse =
   | { results: string }
