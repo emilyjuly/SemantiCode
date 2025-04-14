@@ -1,9 +1,0 @@
-{
-  "/_not-found/page": "/_not-found",
-  "/api/analyze/route": "/api/analyze",
-  "/api/chat/route": "/api/chat",
-  "/api/saveCode/route": "/api/saveCode",
-  "/favicon.ico/route": "/favicon.ico",
-  "/api/preview/[id]/route": "/api/preview/[id]",
-  "/page": "/"
-}

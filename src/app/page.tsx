@@ -53,7 +53,7 @@ const EditorPage = () => {
       // if (!analyzeResponse.ok)
       //   throw new Error(analyzeData.error || 'Error parsing code.');
 
-      setResults(data));
+      setResults(data);
     } catch (error: any) {
       setError(error.message);
     } finally {
