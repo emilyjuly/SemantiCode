@@ -9,8 +9,6 @@ export const GET = async (req: NextRequest, context: { params: Promise<{ id: str
     return new NextResponse('Página não encontrada', { status: 404 });
   }
 
-  console.log('no preview o id é esse', id);
-
   return new NextResponse(html, {
     status: 200,
     headers: {

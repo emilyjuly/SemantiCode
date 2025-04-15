@@ -27,7 +27,6 @@ export async function POST(req: Request) {
 
     const id = Math.random().toString(36).substr(2, 9);
     saveTempPage(id, fullHtml);
-    console.log('o id no save code é esse', id)
 
     return NextResponse.json({
       message: 'File created successfully',

@@ -27,7 +27,6 @@ export async function GET(req: NextRequest): Promise<NextResponse<AnalyzeRespons
       );
     }
 
-    console.log('no analyze o id é esse', id)
     const urlToAnalyze = `https://semanticode.vercel.app/api/preview/${id}`;
 
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
@@ -50,7 +49,5 @@ export async function GET(req: NextRequest): Promise<NextResponse<AnalyzeRespons
       { error: 'Unexpected error', details: err.message },
       { status: 500 }
     );
-  } finally {
-    // deleteTempPage(id);
   }
 }
