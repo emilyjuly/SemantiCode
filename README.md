@@ -40,11 +40,6 @@ SemantiCode é uma ferramenta interativa que ajuda desenvolvedores a **praticar 
 
 ---
 
-📹 Demonstração do Projeto
-<video src="https://emilyjuly.github.io/semanticode/demo.webm" autoplay loop muted controls style="max-width: 100%; height: auto;"></video>
-
----
-
 ## 🚀 Como Funciona
 
 1. Escreva HTML e CSS nos editores.
