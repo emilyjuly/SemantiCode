@@ -38,6 +38,10 @@ SemantiCode é uma ferramenta interativa que ajuda desenvolvedores a **praticar 
 
 ![image](https://github.com/user-attachments/assets/85779cb4-aac3-4c29-9195-43971a15fd5f)
 
+---
+
+📹 Demonstração do Projeto
+<video src="demo.webm" autoplay loop muted controls style="max-width: 100%; height: auto;"></video>
 
 ---
 
