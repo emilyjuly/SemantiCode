@@ -4,6 +4,8 @@ SemantiCode é uma ferramenta interativa que ajuda desenvolvedores a **praticar 
 
 > _“Write Better HTML, One Tag at a Time 🚀”_
 
+<a href="https://semanticode.vercel.app/" target="_blank">Acesse aqui!</a>
+
 ---
 
 ## 📌 Funcionalidades
